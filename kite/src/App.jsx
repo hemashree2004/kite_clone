@@ -18,19 +18,24 @@ import SIPTab from './pages/orders/SIPTab';
 import AlertsTab from './pages/orders/AlertsTab';
 import BidsTab from './pages/Bids';
 import NewAlertModal from './pages/Alerts/NewAlertModal';
+import { useState } from 'react';
 
 const App = () => {
     const location = useLocation();
     const hideLayoutRoutes = ['/'];
     const shouldHideLayout = hideLayoutRoutes.includes(location.pathname);
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    
+
+
 
   return (
     <div>
   <ToastContainer />
-  {!shouldHideLayout && <Navbar />}
+  {!shouldHideLayout && <Navbar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />}
 
   <div className="flex">
-    {!shouldHideLayout && <Sidebar />}
+    {!shouldHideLayout && <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />}
     
     <div className="flex-1">
       <Routes>
